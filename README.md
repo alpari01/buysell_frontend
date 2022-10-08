@@ -1,3 +1,18 @@
-## Our buy-sell [website](http://buysell.hopto.org)
-#### Frontend developed on Vue.js
-#### Backend developed on SpringBoot
+## What's this?
+**Frontend** project for a [website](http://buysell.hopto.org) where people can sell their own products, as well as buy, comment and rate other people's products.
+
+## Technologies for development
+- **Npm**, to download, install modules required for the project and also to start the project itself
+- **Vue.js** as a framework for development
+- Development environment suitable for the Vue.js project (for example, **IntelliJ IDEA**)
+
+## Local setup for development
+1. Clone the project to the development environment.
+2. Install npm if not already installed.
+3. In the console, go to the folder with the cloned project and run:```npm install```*
+4. In the same folder type ```npm run serve```
+5. In a browser go to http://localhost:8080
+
+*when cloning from gitlab for the first time
+
+## ...
