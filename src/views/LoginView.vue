@@ -17,6 +17,10 @@
           </div>
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <br>
+        <div>
+          <p>Do not have account yet? <router-link to="/register">Create now</router-link></p>
+        </div>
       </div>
     </div>
   </div>
