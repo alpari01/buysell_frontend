@@ -1,30 +1,36 @@
 <template>
-  <div class="login mt-4">
-    <div class="row">
-      <div class="col-sm-3 mx-auto">
-        <h1>Register</h1>
-        <br>
-        <form>
+  <div class="row">
+    <div class="col-sm-3 mx-auto">
+      <h1>Register</h1>
+      <br>
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputFirstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="inputFirstName" placeholder="e.g. John">
+        </div>
+        <div class="col-md-6">
+          <label for="inputLastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="inputLastName" placeholder="e.g. Snow">
+        </div>
+        <div class="col-12">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="eg@example.com">
+        </div>
+        <div class="col-12">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password" style="margin-bottom: 10px">
+        </div>
+        <div class="col-12">
+          <input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Repeat password">
+        </div>
+        <div class="col-md-6">
+          <label for="inputBirthdate" class="form-label">Birthdate</label>
+          <input type="date" class="form-control" id="inputBirthdate" placeholder>
+        </div>
+        <div class="col-md-6">
+          <label for="inputGender" class="form-label">Gender</label>
           <div class="form-group">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="Enter first name" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="inputLastName" placeholder="Enter last name" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="inputNickname" placeholder="Enter nickname" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email" required>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Enter password" required>
-          </div>
-          <div class="form-group">
-            <input type="date" class="form-control" id="inputBirthdate" placeholder="Enter birthdate" required>
-          </div>
-          <div class="form-group">
-            <input list="genders" name="gender" id="gender" placeholder="Choose your gender" required>
+            <input list="genders" name="gender" id="inputGender" placeholder="Choose...">
             <datalist id="genders">
               <option value="Male"></option>
               <option value="Female"></option>
@@ -58,15 +64,16 @@
               <option value="Trigender"></option>
               <option value="Two spirit"></option>
               <option value="Attack helicopter"></option>
+              <option value="Other"></option>
+              <option value="Prefer not to specify"></option>
             </datalist>
           </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
+          <br>
+        </div>
+        <div class="col-12">
           <button type="submit" class="btn btn-primary">Create account</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -75,6 +82,8 @@
 export default {};
 </script>
 
-<style scoped>
-
+<style>
+label {
+  margin-top: 15px;
+}
 </style>
