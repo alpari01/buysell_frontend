@@ -3,34 +3,34 @@
     <div class="col-sm-3 mx-auto">
       <h1>Register</h1>
       <br>
-      <form class="row g-3">
+      <form class="row g-3" @submit="postData">
         <div class="col-md-6">
           <label for="inputFirstName" class="form-label">First name</label>
-          <input type="text" class="form-control" id="inputFirstName" placeholder="e.g. John">
+          <input type="text" class="form-control" id="inputFirstName" v-model="posts.firstName" placeholder="e.g. John">
         </div>
         <div class="col-md-6">
           <label for="inputLastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="inputLastName" placeholder="e.g. Snow">
+          <input type="text" class="form-control" id="inputLastName" v-model="posts.lastName" placeholder="e.g. Snow">
         </div>
         <div class="col-12">
           <label for="inputEmail" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="eg@example.com">
+          <input type="email" class="form-control" id="inputEmail" v-model="posts.email" placeholder="eg@example.com">
         </div>
         <div class="col-12">
           <label for="inputPassword" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" style="margin-bottom: 10px">
+          <input type="password" class="form-control" id="inputPassword" v-model="posts.password" placeholder="Password" style="margin-bottom: 10px">
         </div>
         <div class="col-12">
           <input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Repeat password">
         </div>
         <div class="col-md-6">
           <label for="inputBirthdate" class="form-label">Birthdate</label>
-          <input type="date" class="form-control" id="inputBirthdate" placeholder>
+          <input type="date" class="form-control" id="inputBirthdate" v-model="posts.birthdate" placeholder>
         </div>
         <div class="col-md-6">
           <label for="inputGender" class="form-label">Gender</label>
           <div class="form-group">
-            <input list="genders" name="gender" id="inputGender" placeholder="Choose...">
+            <input list="genders" name="gender" id="inputGender" v-model="posts.gender" placeholder="Choose...">
             <datalist id="genders">
               <option value="Male"></option>
               <option value="Female"></option>
@@ -79,7 +79,27 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  data(){
+    return {
+      posts: {
+        firstName: null,
+        lastName: null,
+        email: null,
+        password: null,
+        birthdate: null,
+        gender: null,
+      }
+    }
+  },
+  methods: {
+    postData() {
+      this.posts = axios.post("/api/users", this.posts)
+    }
+  }
+};
 </script>
 
 <style>
