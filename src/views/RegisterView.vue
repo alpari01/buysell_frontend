@@ -23,7 +23,7 @@
           <div class="form-group">
             <input type="date" class="form-control" id="inputBirthdate" placeholder="Enter birthdate" required>
           </div>
-          <div class="form-group" align="left">
+          <div class="form-group">
             <input list="genders" name="gender" id="gender" placeholder="Choose your gender" required>
             <datalist id="genders">
               <option value="Male"></option>
