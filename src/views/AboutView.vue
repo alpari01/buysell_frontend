@@ -52,7 +52,7 @@ table {
   border-collapse: separate;
   border-spacing: 0 20px;
   font-size: 20px;
-  word-break: break-all;
+  word-break: break-word;
 }
 th {
   border-bottom: 1px solid #3a3a3a;
