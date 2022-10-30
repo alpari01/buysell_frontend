@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
+  <div id="users">
     <div class="col-sm-3 mx-auto">
       <figure>
-        <figcaption>All users</figcaption>
+        <figcaption>Users</figcaption>
         <table>
           <tr>
             <th>ID</th>
@@ -18,9 +18,32 @@
       </figure>
     </div>
   </div>
+
+  <div id="products">
+    <div class="col-sm-3 mx-auto">
+      <figure>
+        <figcaption>Products</figcaption>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          <tr v-for="product of products" :key="product.id">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+          </tr>
+        </table>
+      </figure>
+    </div>
+  </div>
 </template>
 
 <style>
+#users { position: absolute; left: 0; top: 10%; width: 70%; }
+#products { position: absolute; right: 0; top: 10%; width: 70%; }
+
 figcaption {
   font-size: 35px
 }
@@ -29,6 +52,7 @@ table {
   border-collapse: separate;
   border-spacing: 0 20px;
   font-size: 20px;
+  word-break: break-all;
 }
 th {
   border-bottom: 1px solid #3a3a3a;
@@ -53,13 +77,16 @@ import axios from "axios";
 export default {
   data(){
     return {
-      users: []
+      users: [],
+      products: []
     }
   },
   async created() {
     try {
-      const response = await axios.get('/api/users');
+      let response = await axios.get('/api/users');
       this.users = response.data;
+      response = await axios.get('/api/products');
+      this.products = response.data;
     } catch (e) {
       console.error(e);
     }
