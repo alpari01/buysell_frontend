@@ -1,18 +1,45 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/cat.jpg">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="row">
+    <div class="col-sm-3 mx-auto">
+      <h1>See memes here</h1>
+      <div class="row g-3">
+        <img class="marginauto" src={{meme.url}} alt="">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from "axios";
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      meme: ""
+    }
+  },
+  async created() {
+    try {
+      let response = await axios.get('/api/meme');
+      this.meme = response.data;
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 </script>
+
+<style>
+img {
+  display: block;
+  max-width:500px;
+  max-height:500px;
+  width: auto;
+  height: auto;
+}
+
+.marginauto {
+  margin: 10px auto 20px;
+  display: block;
+}
+</style>
