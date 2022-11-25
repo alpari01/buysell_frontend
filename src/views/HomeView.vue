@@ -2,8 +2,12 @@
   <div class="row">
     <div class="col-sm-3 mx-auto">
       <h1>See memes here</h1>
+      <form @submit="loadMeme">
+        <button type="submit" class="btn btn-primary">Next meme</button>
+      </form>
+      <br>
       <div class="row g-3">
-        <img class="marginauto" src={{meme.url}} alt="">
+        <img class="marginauto" :src=meme alt="">
       </div>
     </div>
   </div>
@@ -18,6 +22,13 @@ export default {
       meme: ""
     }
   },
+
+  methods: {
+    loadMeme() {
+      this.meme = axios.get('/api/meme')
+    }
+  },
+
   async created() {
     try {
       let response = await axios.get('/api/meme');
@@ -26,7 +37,7 @@ export default {
       console.error(e);
     }
   }
-}
+};
 </script>
 
 <style>
