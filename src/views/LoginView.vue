@@ -1,3 +1,19 @@
+<script setup>
+import {ref, inject} from "vue";
+
+const axios = inject('axios')
+const userEmail = ref('')
+const userPassword = ref('')
+
+function login() {
+  let requestBody = {
+    userEmail,
+    userPassword
+  }
+  axios.post('/api/public/login', requestBody)
+}
+</script>
+
 <template>
   <div class="login mt-4">
     <div class="row">
@@ -6,16 +22,16 @@
         <br>
         <form>
           <div class="form-group">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+            <input v-model="userEmail" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+            <input v-model="userPassword" type="password" class="form-control" id="inputPassword" placeholder="Enter password">
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button v-on:click="login" class="btn btn-primary">Login</button>
         </form>
         <br>
         <div>
@@ -26,10 +42,5 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
-
 </style>
