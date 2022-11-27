@@ -25,13 +25,13 @@ export default {
 
   methods: {
     loadMeme() {
-      this.meme = axios.get('/api/meme')
+      this.meme = axios.get('/api/public/meme/')
     }
   },
 
   async created() {
     try {
-      let response = await axios.get('/api/meme');
+      let response = await axios.get('/api/public/meme/');
       this.meme = response.data;
     } catch (e) {
       console.error(e);
