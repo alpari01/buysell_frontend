@@ -6,9 +6,16 @@ function isUserLoggedIn() {
 function addProduct() {
   if (isUserLoggedIn()) {
     const productTable = document.getElementById("productTable")
+
     const newProduct = document.createElement("div")
     newProduct.setAttribute("class", "col")
-    newProduct.innerHTML = "value"
+
+    const newProductLink = document.createElement("a")
+    newProductLink.setAttribute("href", "www.google.com")
+    newProductLink.innerHTML = "PRODUCT PAGE"
+
+    newProduct.appendChild(newProductLink)
+
     productTable.appendChild(newProduct)
   }
   else alert("User not logged in.");
