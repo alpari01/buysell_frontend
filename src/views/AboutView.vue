@@ -83,7 +83,7 @@ export default {
   },
   async created() {
     let token = JSON.parse(localStorage.getItem("token"));
-    if (token !== "") {
+    if (token != null) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token
       let response = await axios.get('/api/users');
       this.users = response.data;
