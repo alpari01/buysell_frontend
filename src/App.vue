@@ -7,13 +7,14 @@ function logout() {
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/products">Products</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/register">Register</router-link> |
-    <router-link to="/product/add">Test add product</router-link> |
-    <router-link to="/login"><input type="button" class="btn btn-primary btn-sm" value="Login"></router-link> |
-    <router-link to="/"><input type="button" class="btn btn-secondary btn-sm"
-                               v-on:click="logout" value="Logout"></router-link>
+    <router-link to="/products">Products</router-link>
+
+    <div class="buttons">
+      <router-link to="/register"><input type="button" class="btn btn-primary btn-sm" value="Register" style="margin-right: 2px"></router-link>
+      <router-link to="/login"><input type="button" class="btn btn-primary btn-sm" value="Login"></router-link>
+      <router-link to="/"><input type="button" class="btn btn-secondary btn-sm" v-on:click="logout" value="Logout" style="margin-left: 2px"></router-link>
+    </div>
   </nav>
   <router-view/>
 </template>
@@ -29,6 +30,7 @@ function logout() {
 
 nav {
   padding: 30px;
+  text-align: left;
 }
 
 nav a {
@@ -39,4 +41,9 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.buttons {
+  float: right;
+}
+
 </style>
