@@ -82,13 +82,13 @@ export default {
     }
   },
   async created() {
-    try {
+    let token = JSON.parse(localStorage.getItem("token"));
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + token
       let response = await axios.get('/api/users');
       this.users = response.data;
       response = await axios.get('/api/products');
       this.products = response.data;
-    } catch (e) {
-      console.error(e);
     }
   }
 }
