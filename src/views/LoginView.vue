@@ -1,16 +1,21 @@
 <script setup>
-import {ref, inject} from "vue";
+import {ref,} from "vue";
+import axios from "axios";
 
-const axios = inject('axios')
-const userEmail = ref('')
-const userPassword = ref('')
+const email = ref('')
+const password = ref('')
 
 function login() {
-  let requestBody = {
-    userEmail,
-    userPassword
+  let request = {
+    email: email.value,
+    password: password.value
   }
-  axios.post('/api/public/login', requestBody)
+  console.log(request)
+  axios.post('/api/public/login', request)
+      .then(response => {
+        console.log(response.data.token)
+        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token
+      })
 }
 </script>
 
@@ -22,16 +27,16 @@ function login() {
         <br>
         <form>
           <div class="form-group">
-            <input v-model="userEmail" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+            <input v-model="email" type="email" class="form-control" id="inputEmail" placeholder="Enter email">
           </div>
           <div class="form-group">
-            <input v-model="userPassword" type="password" class="form-control" id="inputPassword" placeholder="Enter password">
+            <input v-model="password" type="password" class="form-control" id="inputPassword" placeholder="Enter password">
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
-          <button v-on:click="login" class="btn btn-primary">Login</button>
+          <input type="button" v-on:click="login" class="btn btn-primary" value="Login">
         </form>
         <br>
         <div>
