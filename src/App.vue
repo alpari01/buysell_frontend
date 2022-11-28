@@ -1,10 +1,30 @@
+<script setup>
+function updateElements() {
+
+  const userToken = localStorage.getItem("token")
+  const actionButton = document.getElementById("actionButton")
+
+  if (userToken === "") {
+    actionButton.setAttribute("value", "Login")
+    actionButton.setAttribute("class", "btn btn-primary btn-sm")
+  }
+
+  else {
+    actionButton.setAttribute("value", "Logout")
+    actionButton.setAttribute("class", "btn btn-secondary btn-sm")
+  }
+  alert("hello")
+}
+</script>
+
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/login">Login</router-link> |
+    <router-link to="/" v-on:click="updateElements">Home</router-link> |
+    <router-link to="/about" v-on:click="updateElements">About</router-link> |
     <router-link to="/register">Register</router-link> |
-    <router-link to="/product/add">Test add product</router-link>
+    <router-link to="/product/add">Test add product</router-link> |
+    <router-link to="/login"><input type="button" class="btn btn-primary btn-sm"
+                                    id="actionButton" value="Login"></router-link>
   </nav>
   <router-view/>
 </template>
