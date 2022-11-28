@@ -37,7 +37,7 @@ function login() {
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
-          <input type="button" v-on:click="login" class="btn btn-primary" value="Login">
+          <router-link to="/"><input type="button" v-on:click="login" class="btn btn-primary" value="Login"></router-link>
         </form>
         <br>
         <div>
