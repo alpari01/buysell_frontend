@@ -13,7 +13,6 @@ function login() {
   console.log(request)
   axios.post('/api/public/login', request)
       .then(response => {
-        console.log(response.data.token)
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token
         localStorage.setItem("token", JSON.stringify(response.data.token))
       })
