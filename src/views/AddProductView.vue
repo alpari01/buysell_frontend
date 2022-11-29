@@ -36,10 +36,13 @@ export default {
   },
   methods: {
     postData() {
-      let userData = VueJwtDecode.decode(JSON.parse(localStorage.getItem("token")));
-      this.posts.userId = userData["id"]
-      console.log(this.posts)
-      this.posts = axios.post('/api/products', this.posts)
+      let token = JSON.parse(localStorage.getItem("token"))
+      if (token != null) {
+        let userData = VueJwtDecode.decode(token);
+        this.posts.userId = userData["id"]
+        this.posts = axios.post('/api/products', this.posts)
+      }
+      else alert("User not logged in.")
     }
   }
 };

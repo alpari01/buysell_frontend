@@ -1,15 +1,5 @@
 <script setup>
 
-// function isUserLoggedIn() {
-//   let token = JSON.parse(localStorage.getItem("token"));
-//   return token != null;
-// }
-//
-// function redirect() {
-//   if (isUserLoggedIn()) location.href="/product/add";
-//   else alert("Please log in.")
-// }
-
 // function addProduct() {
 //   if (isUserLoggedIn()) {
 //     const productTable = document.getElementById("productTable")
