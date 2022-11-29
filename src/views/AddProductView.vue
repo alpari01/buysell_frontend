@@ -13,7 +13,6 @@
               <textarea class="form-control" v-model="posts.description" placeholder="Product description" id="inputProductDescription" style="height: 100px"></textarea>
             </div>
           </div>
-<!--          <router-link to="/products"><button type="submit" class="btn btn-primary">Add</button></router-link>-->
           <button type="submit" class="btn btn-primary">Add</button>
         </form>
       </div>
