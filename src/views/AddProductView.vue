@@ -6,9 +6,6 @@
         <br>
         <form @submit="postData">
           <div class="mb-3">
-            <input type="text" class="form-control" id="inputProductUserId" v-model="posts.userId" placeholder="User id">
-          </div>
-          <div class="mb-3">
             <input type="text" class="form-control" id="inputProductName" v-model="posts.name" placeholder="Product name">
           </div>
           <div class="mb-3">
@@ -16,6 +13,7 @@
               <textarea class="form-control" v-model="posts.description" placeholder="Product description" id="inputProductDescription" style="height: 100px"></textarea>
             </div>
           </div>
+<!--          <router-link to="/products"><button type="submit" class="btn btn-primary">Add</button></router-link>-->
           <button type="submit" class="btn btn-primary">Add</button>
         </form>
       </div>
@@ -25,6 +23,7 @@
 
 <script>
 import axios from "axios";
+import VueJwtDecode from 'vue-jwt-decode'
 
 export default {
   data(){
@@ -38,6 +37,8 @@ export default {
   },
   methods: {
     postData() {
+      let userData = VueJwtDecode.decode(JSON.parse(localStorage.getItem("token")));
+      this.posts.userId = userData["id"]
       this.posts = axios.post('/api/products', this.posts)
     }
   }
