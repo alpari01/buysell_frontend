@@ -4,10 +4,7 @@
       <div class="col-sm-3 mx-auto">
         <h1>Add new product</h1>
         <br>
-        <form @submit="postData">
-          <div class="mb-3">
-            <input type="text" class="form-control" id="inputProductUserId" v-model="posts.userId" placeholder="User id">
-          </div>
+        <form>
           <div class="mb-3">
             <input type="text" class="form-control" id="inputProductName" v-model="posts.name" placeholder="Product name">
           </div>
@@ -16,7 +13,7 @@
               <textarea class="form-control" v-model="posts.description" placeholder="Product description" id="inputProductDescription" style="height: 100px"></textarea>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
+          <input type="button" v-on:click="postData" class="btn btn-primary" value="Add">
         </form>
       </div>
     </div>
@@ -25,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import VueJwtDecode from 'vue-jwt-decode'
 
 export default {
   data(){
@@ -38,7 +36,13 @@ export default {
   },
   methods: {
     postData() {
-      this.posts = axios.post('/api/products', this.posts)
+      let token = JSON.parse(localStorage.getItem("token"))
+      if (token != null) {
+        let userData = VueJwtDecode.decode(token);
+        this.posts.userId = userData["id"]
+        this.posts = axios.post('/api/products', this.posts)
+      }
+      else alert("User not logged in.")
     }
   }
 };
