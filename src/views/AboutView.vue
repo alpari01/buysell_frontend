@@ -83,12 +83,12 @@ export default {
   },
   async created() {
     let token = JSON.parse(localStorage.getItem("token"));
+    let response = await axios.get('/api/public/products');
+    this.products = response.data;
     if (token != null) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token
-      let response = await axios.get('/api/users');
+      response = await axios.get('/api/users');
       this.users = response.data;
-      response = await axios.get('/api/products');
-      this.products = response.data;
     }
   }
 }

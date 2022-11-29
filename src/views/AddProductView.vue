@@ -40,7 +40,7 @@ export default {
       if (token != null) {
         let userData = VueJwtDecode.decode(token);
         this.posts.userId = userData["id"]
-        this.posts = axios.post('/api/products', this.posts)
+        this.posts = axios.post('/api/public/products', this.posts)
       }
       else alert("User not logged in.")
     }
