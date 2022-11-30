@@ -118,14 +118,18 @@ export default {
 
       <div class="col-sm-4 mx-auto">
         <h2>My products</h2>
-        <div class="col-sm-6 mx-auto" style="padding: 10px">
-          <router-link to="/product/add"><input type="button" class="btn btn-success btn-sm" style="margin-right: 5px" value="ADD"></router-link>
-          <router-link to="/product/update"><input type="button" class="btn btn-warning btn-sm" value="UPD"></router-link>
-<!--          <input type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" value="DEL">-->
-        </div>
-        <div class="col-sm-6 mx-auto" style="padding: 10px">
-          <input type="button" v-on:click="goPageBack" class="btn btn-primary btn-sm" style="margin-right: 5px" value="←">
-          <input type="button" v-on:click="goPageForward" class="btn btn-primary btn-sm" style="margin-left: 5px" value="→">
+        <div class="col-sm-8 mx-auto" style="padding: 10px">
+          <button class="btn btn-link" aria-label="Previous page" v-on:click="goPageBack">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+          </button>
+          <router-link to="/product/add"><input type="button" class="btn btn-success btn-sm" style="margin-left: 5px; margin-right: 5px" value="Add product"></router-link>
+          <button class="btn btn-link" aria-label="Next page" v-on:click="goPageForward">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+          </button>
         </div>
         <table>
           <caption></caption>
@@ -134,10 +138,16 @@ export default {
             <th>Name</th>
             <th>Description</th>
           </tr>
-          <tr v-for="product of products" :key="product.id">
+          <tr class="break-word" v-for="product of products" :key="product.id">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
+            <router-link to="/product/update"><button class="btn btn-link" aria-label="Update product">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+              </svg>
+            </button></router-link>
             <button class="btn btn-link" aria-label="Remove product" v-on:click="productRemove(product.id)">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -153,12 +163,10 @@ export default {
 
 <style scoped>
 .btn-link {
-  /*color: #B2B2B2FC;*/
-  color: #FF8080FC;
+  color: #818181FC;
 }
 .btn-link:hover {
-  /*color: #000000;*/
-  color: #FF2B2BFF;
+  color: #000000;
 }
 
 body {
@@ -182,13 +190,16 @@ table {
   border-collapse: separate;
   border-spacing: 0 20px;
   font-size: 20px;
-  word-break: break-word;
+}
+.break-word {
+  word-break: normal;
 }
 th {
   border-bottom: 1px solid #a2a0a0;
+  padding: 20px;
 }
 td {
-  width: 150px;
+  width: 100px;
   text-align: center;
   padding: 5px;
   border-bottom: 1px solid rgb(206, 205, 205);
