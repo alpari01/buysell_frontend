@@ -115,7 +115,7 @@ export default {
         <h2>My products</h2>
         <div class="col-sm-6 mx-auto" style="padding: 10px">
           <router-link to="/product/add"><input type="button" class="btn btn-success btn-sm" style="margin-right: 5px" value="ADD"></router-link>
-          <input type="button" class="btn btn-warning btn-sm" value="UPD">
+          <router-link to="/product/update"><input type="button" class="btn btn-warning btn-sm" value="UPD"></router-link>
           <input type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" value="DEL">
         </div>
         <div class="col-sm-6 mx-auto" style="padding: 10px">
