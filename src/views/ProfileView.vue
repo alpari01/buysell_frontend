@@ -24,12 +24,17 @@ export default {
         this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
         console.log(this.products)
       }
-    }
+    },
+
+    async productRemove(productId) {
+      await axios.delete("/api/public/products/" + productId)
+      location.reload();
+    },
   },
 
   async created() {
     this.products = (await axios.get("/api/public/products2?page=0&orderBy=id")).data.productList;
-  }
+  },
 }
 </script>
 
@@ -116,7 +121,7 @@ export default {
         <div class="col-sm-6 mx-auto" style="padding: 10px">
           <router-link to="/product/add"><input type="button" class="btn btn-success btn-sm" style="margin-right: 5px" value="ADD"></router-link>
           <router-link to="/product/update"><input type="button" class="btn btn-warning btn-sm" value="UPD"></router-link>
-          <input type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" value="DEL">
+<!--          <input type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" value="DEL">-->
         </div>
         <div class="col-sm-6 mx-auto" style="padding: 10px">
           <input type="button" v-on:click="goPageBack" class="btn btn-primary btn-sm" style="margin-right: 5px" value="←">
@@ -133,6 +138,12 @@ export default {
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
             <td>{{ product.description }}</td>
+            <button class="btn btn-link" aria-label="Remove product" v-on:click="productRemove(product.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </button>
           </tr>
         </table>
       </div>
@@ -141,6 +152,15 @@ export default {
 </template>
 
 <style scoped>
+.btn-link {
+  /*color: #B2B2B2FC;*/
+  color: #FF8080FC;
+}
+.btn-link:hover {
+  /*color: #000000;*/
+  color: #FF2B2BFF;
+}
+
 body {
   background: rgb(99, 39, 120)
 }
