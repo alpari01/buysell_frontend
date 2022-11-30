@@ -13,6 +13,18 @@
               <textarea class="form-control" id="inputProductDescription" v-model="posts.description" placeholder="New description" style="height: 100px"></textarea>
             </div>
           </div>
+          <div class="mb-3">
+            <div class="col-2">
+              <input list="categories" v-model="posts.categoryName" placeholder="New category" required>
+              <datalist id="categories">
+                <option value="Animals"></option>
+                <option value="Meal"></option>
+                <option value="Furniture"></option>
+                <option value="Electronics"></option>
+                <option value="Clothes"></option>
+              </datalist>
+            </div>
+          </div>
           <input type="button" v-on:click="postData" class="btn btn-primary" value="Update">
         </form>
       </div>
@@ -32,6 +44,8 @@ export default {
         userId: null,
         name: null,
         description: null,
+        categoryId: null,
+        categoryName: null,
       }
     }
   },
