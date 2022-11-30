@@ -6,9 +6,6 @@
         <br>
         <form>
           <div class="mb-3">
-            <input type="text" class="form-control" id="inputProductId" v-model="posts.id" placeholder="Product ID">
-          </div>
-          <div class="mb-3">
             <input type="text" class="form-control" id="inputProductName" v-model="posts.name" placeholder="New name">
           </div>
           <div class="mb-3">
@@ -44,6 +41,7 @@ export default {
       if (token != null) {
         let userData = VueJwtDecode.decode(token);
         this.posts.userId = userData["id"]
+        this.posts.id = localStorage.getItem("productId")
         this.posts = axios.put('/api/public/products/' + this.posts.id, this.posts)
       }
       else alert("User not logged in.")
