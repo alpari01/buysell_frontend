@@ -2,6 +2,15 @@
 function logout() {
   localStorage.removeItem("token")
 }
+
+function isUserLoggedIn() {
+  return localStorage.getItem("token") != null
+}
+
+function redirectToMyProfile() {
+  if (isUserLoggedIn()) location.href="/profile"
+  else alert("Please login.")
+}
 </script>
 
 <template>
@@ -11,7 +20,7 @@ function logout() {
     <router-link to="/products">Products</router-link>
 
     <div class="buttons">
-      <router-link to="/profile"><input type="button" class="btn btn-outline-primary" value="My profile" style="margin-right: 5px"></router-link>
+      <input type="button" class="btn btn-outline-primary" value="My profile" v-on:click="redirectToMyProfile" style="margin-right: 5px">
       <router-link to="/register"><input type="button" class="btn btn-primary btn-sm" value="Register" style="margin-right: 2px"></router-link>
       <router-link to="/login"><input type="button" class="btn btn-primary btn-sm" value="Login"></router-link>
       <router-link to="/"><input type="button" class="btn btn-secondary btn-sm" v-on:click="logout" value="Logout" style="margin-left: 2px"></router-link>
