@@ -39,8 +39,8 @@ export default {
       <div class="col-md-3 border-right">
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
           <img alt="avatar" class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-          <span class="font-weight-bold">Ilja Lastovko</span>
-          <span class="text-black-50">lastovkoi@gmail.com</span>
+          <span class="font-weight-bold">Master Yoda</span>
+          <span class="text-black-50">alpari@ttu.ee</span>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default {
       <div class="col-sm-4 mx-auto">
         <h2>My products</h2>
         <div class="col-sm-6 mx-auto" style="padding: 10px">
-          <input type="button" class="btn btn-success btn-sm" style="margin-right: 5px" value="ADD">
+          <router-link to="/product/add"><input type="button" class="btn btn-success btn-sm" style="margin-right: 5px" value="ADD"></router-link>
           <input type="button" class="btn btn-warning btn-sm" value="UPD">
           <input type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" value="DEL">
         </div>
