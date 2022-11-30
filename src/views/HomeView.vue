@@ -1,9 +1,9 @@
 <template>
   <div class="row">
     <div class="col-sm-3 mx-auto">
-      <h1>See memes here</h1>
+      <h1>See dogs here</h1>
       <form @submit="loadMeme">
-        <button type="submit" class="btn btn-primary">Next meme</button>
+        <button type="submit" class="btn btn-primary">Next dog</button>
       </form>
       <br>
       <div class="row g-3">
