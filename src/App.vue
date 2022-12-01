@@ -2,15 +2,6 @@
 function logout() {
   localStorage.removeItem("token")
 }
-
-// function isUserLoggedIn() {
-//   return localStorage.getItem("token") != null
-// }
-
-// function redirectToMyProfile() {
-//   if (isUserLoggedIn()) location.href="/profile"
-//   else alert("Please login.")
-// }
 </script>
 
 <template>

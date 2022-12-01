@@ -41,6 +41,7 @@ export default {
 
   <div class="col-sm-3 mx-auto">
     <table>
+      <caption></caption>
       <tr>
         <th>ID</th>
         <th>Name</th>
