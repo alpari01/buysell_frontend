@@ -39,16 +39,16 @@ export default {
     <input type="button" v-on:click="goPageForward" class="btn btn-primary btn-sm" style="margin-left: 5px" value="→">
   </div>
 
-  <div class="col-sm-3 mx-auto">
+  <div class="col-sm-10 mx-auto">
     <table>
       <caption></caption>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
       <tr v-for="product of products" :key="product.id">
-        <td>{{ product.id }}</td>
+        <td><img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image"></td>
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>
       </tr>
@@ -57,23 +57,30 @@ export default {
 </template>
 
 <style scoped>
-figcaption {
-  font-size: 35px
-}
 
 table {
-  border-collapse: separate;
-  border-spacing: 0 20px;
-  font-size: 20px;
-  word-break: break-word;
 }
-th {
-  border-bottom: 1px solid #3a3a3a;
-}
+
 td {
-  width: 150px;
-  text-align: center;
-  padding: 5px;
+  width: 33%;
   border-bottom: 1px solid #ababab;
 }
+
+th {
+  padding: 10px;
+  border-bottom: 1px solid #ababab;
+}
+
+img {
+  max-height: 500px;
+  max-width: 500px;
+  height: auto;
+  width: auto;
+  padding: 20px;
+}
+
+.rounded-card{
+  border-radius: 15%;
+}
+
 </style>
