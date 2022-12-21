@@ -24,12 +24,16 @@ export default {
         this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
         console.log(this.products)
       }
+    },
+
+    async productBuy(productId) {
+      localStorage.setItem("productId", productId)
     }
   },
 
   async created() {
     this.products = (await axios.get("/api/public/products2?page=0&orderBy=id")).data.productList;
-  }
+  },
 }
 </script>
 
@@ -48,8 +52,24 @@ export default {
         <th></th>
       </tr>
       <tr v-for="product of products" :key="product.id">
-        <td><img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image"></td>
-        <td>{{ product.name }}</td>
+        <td>
+          <router-link to="/product/buy">
+            <div class="hover10">
+              <div class="container">
+                <figure>
+                  <img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image" v-on:click="productBuy(product.id)">
+                  <div class="text-centered">VIEW PRODUCT</div>
+                </figure>
+              </div>
+            </div>
+          </router-link>
+        </td>
+        <td>
+          <ul class="no-bullets">
+            <li><strong>{{ product.name }}</strong></li>
+            <li>{{ product.price }} €</li>
+          </ul>
+        </td>
         <td>{{ product.description }}</td>
       </tr>
     </table>
@@ -83,4 +103,45 @@ img {
   border-radius: 15%;
 }
 
+.hover10 figure img {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.hover10 figure:hover img {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.container:hover .text-centered {
+  opacity: 1;
+}
+
+.text-centered {
+  opacity: 0;
+  transition: .5s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 35px;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
 </style>

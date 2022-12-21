@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 #users { position: absolute; left: 0; top: 10%; width: 70%; }
 #products { position: absolute; right: 0; top: 10%; width: 70%; }
 
