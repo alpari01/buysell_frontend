@@ -1,6 +1,7 @@
 <script setup>
 import {ref,} from "vue";
 import axios from "axios";
+import VueJwtDecode from "vue-jwt-decode";
 
 const email = ref('')
 const password = ref('')
@@ -13,8 +14,10 @@ function login() {
   console.log(request)
   axios.post('/api/public/login', request)
       .then(response => {
-        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token
-        localStorage.setItem("token", JSON.stringify(response.data.token))
+        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        let token = JSON.parse(localStorage.getItem("token"));
+        localStorage.setItem("userId", VueJwtDecode.decode(token)["id"]);
       })
 }
 </script>
