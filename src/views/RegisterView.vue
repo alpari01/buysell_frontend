@@ -91,6 +91,7 @@ export default {
         password: null,
         birthdate: null,
         gender: null,
+        balance: 0,
       }
     }
   },
