@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/product/update',
     name: 'updateProduct',
-    component: () => import('../views/UpdateProductView')
+    component: () => import('../views/UpdateProductView.vue')
   },
   {
     path: '/products',
@@ -35,7 +35,7 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/profile',
@@ -45,7 +45,12 @@ const routes = [
   {
     path: '/balance/add',
     name: 'addBalance',
-    component: () => import('../views/AddBalanceView')
+    component: () => import('../views/AddBalanceView.vue')
+  },
+  {
+    path: '/product/buy',
+    name: 'buyProduct',
+    component: () => import('../views/BuyProductView.vue')
   }
 ]
 

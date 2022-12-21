@@ -1,0 +1,88 @@
+<script>
+import axios from "axios";
+
+export default {
+  data(){
+    return {
+      users: [],
+      product: []
+    }
+  },
+  async created() {
+    let productId = localStorage.getItem("productId");
+    let response = await axios.get('/api/public/product/' + productId);
+    this.product = response.data
+    console.log(this.product)
+  }
+}
+</script>
+
+<template>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">{{ this.product.name }}</h1>
+        <h4 class="card-subtitle">{{ this.product.categoryName }}</h4>
+        <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-6">
+            <div class="white-box text-center"><img src="https://surmullet.ru/wp-content/uploads/2020/05/259.jpg" alt=""></div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-6">
+            <h2 class="box-title mt-5">Product description</h2>
+            <p>{{ this.product.description }}</p>
+            <h2 class="mt-5">
+              €{{ this.product.price }}<small class="text-success"> (36%off)</small>
+            </h2>
+            <button class="btn btn-primary btn-rounded">Buy Now</button>
+            <h4 class="box-title mt-5">Key Highlights</h4>
+            <ul class="list-unstyled">
+              <li><em class="fa fa-check text-success"></em> MasterCard, Visa, PayPal</li>
+              <li><em class="fa fa-check text-success"></em> Money back guarantee within 30 days</li>
+              <li><em class="fa fa-check text-success"></em> 100% security - protection of personal data</li>
+              <li><em class="fa fa-check text-success"></em> In case of a problem, call us on 620 2002</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+body{
+  background-color: #edf1f5;
+  margin-top:20px;
+}
+.card {
+  margin-bottom: 30px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid transparent;
+  border-radius: 0;
+}
+.card .card-subtitle {
+  font-weight: 300;
+  margin-bottom: 10px;
+  color: #8898aa;
+}
+.table-product.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f3f8fa!important
+}
+.table-product td{
+  border-top: 0 solid #dee2e6 !important;
+  color: #728299!important;
+}
+img {
+  width: 430px;
+  margin-top: 90px;
+}
+</style>
