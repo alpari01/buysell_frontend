@@ -9,7 +9,6 @@ export default {
       trade: {
         buyerId: null,
         sellerId: null,
-        productId: null,
         date: null
       }
     }
@@ -20,11 +19,10 @@ export default {
 
       this.trade.buyerId = parseInt(localStorage.getItem("userId"));
       this.trade.sellerId = this.product.userId;
-      this.trade.productId = this.product.id;
       this.trade.date = new Date();
 
       console.log(this.trade)
-      axios.post('/api/trades', this.trade)
+      axios.post('/api/trades/' + this.product.id, this.trade)
     }
   },
 
