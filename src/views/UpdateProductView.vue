@@ -6,24 +6,28 @@
         <br>
         <form>
           <div class="mb-3">
+            <label for="inputProductName">Name</label>
             <input type="text" class="form-control" id="inputProductName" v-model="posts.name" placeholder="New name">
           </div>
           <div class="mb-3">
+            <label for="inputProductDescription">Description</label>
             <div class="form-floating">
               <textarea class="form-control" id="inputProductDescription" v-model="posts.description" placeholder="New description" style="height: 100px"></textarea>
             </div>
           </div>
           <div class="mb-3">
-            <div class="col-2">
-              <input list="categories" v-model="posts.categoryName" placeholder="New category" required>
-              <datalist id="categories">
-                <option value="Animals"></option>
-                <option value="Meal"></option>
-                <option value="Furniture"></option>
-                <option value="Electronics"></option>
-                <option value="Clothes"></option>
-              </datalist>
-            </div>
+            <label for="inputProductPrice">Price (€)</label>
+            <input type="text" class="form-control" id="inputProductPrice" v-model="posts.price" placeholder="New price (€)">
+          </div>
+          <div class="mb-3">
+          <input list="categories" id="inputProductCategory" v-model="posts.categoryName" placeholder="Choose category" required>
+            <datalist id="categories">
+              <option value="Animals"></option>
+              <option value="Meal"></option>
+              <option value="Furniture"></option>
+              <option value="Electronics"></option>
+              <option value="Clothes"></option>
+            </datalist>
           </div>
           <input type="button" v-on:click="postData" class="btn btn-primary" value="Update">
         </form>
@@ -42,10 +46,11 @@ export default {
       posts: {
         id: null,
         userId: null,
-        name: null,
-        description: null,
+        name: localStorage.getItem("productName"),
+        description: localStorage.getItem("productDescription"),
         categoryId: null,
         categoryName: null,
+        price: localStorage.getItem("productPrice"),
       }
     }
   },
