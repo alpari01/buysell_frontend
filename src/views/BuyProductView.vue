@@ -5,9 +5,27 @@ export default {
   data(){
     return {
       users: [],
-      product: []
+      product: [],
+      trade: {
+        buyerId: null,
+        sellerId: null,
+        date: null
+      }
     }
   },
+
+  methods: {
+    buyProduct() {
+
+      this.trade.buyerId = parseInt(localStorage.getItem("userId"));
+      this.trade.sellerId = this.product.userId;
+      this.trade.date = new Date();
+
+      console.log(this.trade)
+      axios.post('/api/trades/' + this.product.id, this.trade)
+    }
+  },
+
   async created() {
     let productId = localStorage.getItem("productId");
     let response = await axios.get('/api/public/product/' + productId);
@@ -35,7 +53,7 @@ export default {
             <h2 class="mt-5">
               €{{ this.product.price }}<small class="text-success"> (36%off)</small>
             </h2>
-            <button class="btn btn-primary btn-rounded">Buy Now</button>
+            <router-link to="/"><button class="btn btn-primary btn-rounded" v-on:click="buyProduct()">Buy Now</button></router-link>
             <h4 class="box-title mt-5">Key Highlights</h4>
             <ul class="list-unstyled">
               <li><em class="fa fa-check text-success"></em> MasterCard, Visa, PayPal</li>

@@ -11,9 +11,9 @@ export default {
 
   methods: {
     async goPageForward() {
-      if ((await axios.get("/api/public/products2?page=" + (this.page + 1) + "0&orderBy=id")).data.productList.length > 0) {
+      if ((await axios.get("/api/public/products4?page=" + (this.page + 1) + "&orderBy=id")).data.length > 0) {
         this.page++
-        this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
+        this.products = (await axios.get("/api/public/products4?page=" + this.page + "&orderBy=id")).data
         console.log(this.products)
       }
     },
@@ -21,18 +21,18 @@ export default {
     async goPageBack() {
       if (this.page > 0) {
         this.page--
-        this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
+        this.products = (await axios.get("/api/public/products4?page=" + this.page + "&orderBy=id")).data
         console.log(this.products)
       }
     },
 
-    async productBuy(productId) {
+    async viewProduct(productId) {
       localStorage.setItem("productId", productId)
     }
   },
 
   async created() {
-    this.products = (await axios.get("/api/public/products2?page=0&orderBy=id")).data.productList;
+    this.products = (await axios.get("/api/public/products4?page=0&orderBy=id")).data;
   },
 }
 </script>
@@ -57,7 +57,7 @@ export default {
             <div class="hover10">
               <div class="container">
                 <figure>
-                  <img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image" v-on:click="productBuy(product.id)">
+                  <img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image" v-on:click="viewProduct(product.id)">
                   <div class="text-centered">VIEW PRODUCT</div>
                 </figure>
               </div>
