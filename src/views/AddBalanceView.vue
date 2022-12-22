@@ -37,6 +37,7 @@ export default {
     postData() {
       this.posts.balance = parseFloat(this.posts.balance) + parseFloat(this.addBalance)
       this.posts = axios.put('/api/users/' + localStorage.getItem("userId"), this.posts)
+      localStorage.setItem("userBalance", this.posts.balance)
     },
   },
 

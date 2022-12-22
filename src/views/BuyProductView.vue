@@ -6,31 +6,49 @@ export default {
     return {
       users: [],
       product: [],
+
       trade: {
         buyerId: null,
         sellerId: null,
         date: null
-      }
+      },
+
+      posts: {
+        balance: null,
+      },
     }
   },
 
   methods: {
     buyProduct() {
 
-      this.trade.buyerId = parseInt(localStorage.getItem("userId"));
-      this.trade.sellerId = this.product.userId;
-      this.trade.date = new Date();
+      let userBalance = parseFloat(this.posts.balance)
+      let productPrice = parseFloat(this.product.price)
 
-      console.log(this.trade)
-      axios.post('/api/trades/' + this.product.id, this.trade)
+      if (userBalance - productPrice >= 0) {
+
+        this.trade.buyerId = parseInt(localStorage.getItem("userId"));
+        this.trade.sellerId = this.product.userId;
+        this.trade.date = new Date();
+
+        axios.post('/api/trades/' + this.product.id, this.trade)
+
+        this.posts.balance = userBalance - productPrice
+        axios.put('/api/users/' + localStorage.getItem("userId"), this.posts)
+        localStorage.setItem("userBalance", this.posts.balance)
+      }
+
+      else {
+        alert("Not enough money")
+      }
     }
   },
 
   async created() {
     let productId = localStorage.getItem("productId");
     let response = await axios.get('/api/public/product/' + productId);
-    this.product = response.data
-    console.log(this.product)
+    this.product = response.data;
+    this.posts.balance = localStorage.getItem("userBalance");
   }
 }
 </script>
