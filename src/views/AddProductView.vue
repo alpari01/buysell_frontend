@@ -31,8 +31,13 @@
           <br>
           <br>
         </div>
+        <div class="col-md-12">
+          <label for="inputImage" class="form-label">Image</label>
+          <input type="file" ref="uploadImage" @change="onImageUpload()" class="form-control" required id="inputImage">
+          <input type="button" @click="startUpload" name="Upload" value="Upload">
+        </div>
         <div class="col-12">
-          <input type="button" v-on:click="postData" class="btn btn-primary" value="Add">
+          <router-link to="/"><input type="button" v-on:click="postData" class="btn btn-primary" value="Add"></router-link>
         </div>
       </form>
     </div>
@@ -53,22 +58,55 @@ export default {
         description: null,
         categoryId: null,
         categoryName: null,
-      }
+        imageId: null,
+      },
+      formData: null,
+      uploaded: false
     }
   },
   methods: {
     postData() {
       let token = JSON.parse(localStorage.getItem("token"))
       if (token != null) {
-        let userData = VueJwtDecode.decode(token);
-        this.posts.userId = userData["id"]
-        this.posts = axios.post('/api/public/products', this.posts)
-      }
-      else alert("User not logged in.")
+
+        if (this.uploaded) {
+          let userData = VueJwtDecode.decode(token);
+          this.posts.userId = userData["id"]
+          this.posts = axios.post('/api/public/products', this.posts)
+        } else alert("Upload product image")
+      } else alert("User not logged in.")
+    },
+
+    onImageUpload() {
+      let file = this.$refs.uploadImage.files[0];
+      this.formData = new FormData();
+      this.formData.append("file", file);
+    },
+
+    startUpload() {
+      axios({
+        url: "/api/public/images",
+        method: "POST",
+        data: this.formData,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data"
+        },
+      })
+      this.uploaded = true;
     }
   }
 };
 </script>
 
 <style scoped>
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
 </style>
