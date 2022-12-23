@@ -12,9 +12,9 @@ export default {
 
   methods: {
     async goPageForward() {
-      if ((await axios.get("/api/public/products2?page=" + (this.page + 1) + "0&orderBy=id")).data.productList.length > 0) {
+      if ((await axios.get("/api/public/products3?page=" + (this.page + 1) + "&orderBy=id&userId=" + this.userData.id)).data.length > 0) {
         this.page++
-        this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
+        this.products = (await axios.get("/api/public/products3?page=" + this.page + "&orderBy=id&userId=" + this.userData.id)).data
         console.log(this.products)
       }
     },
@@ -22,7 +22,7 @@ export default {
     async goPageBack() {
       if (this.page > 0) {
         this.page--
-        this.products = (await axios.get("/api/public/products2?page=" + this.page + "0&orderBy=id")).data.productList
+        this.products = (await axios.get("/api/public/products3?page=" + this.page + "&orderBy=id&userId=" + this.userData.id)).data
         console.log(this.products)
       }
     },
@@ -43,8 +43,8 @@ export default {
 
   async created() {
     if (localStorage.getItem("token")) {
-      this.products = (await axios.get("/api/public/products2?page=0&orderBy=id")).data.productList;
       this.userData = (await axios.get("/api/users/" + localStorage.getItem("userId"))).data;
+      this.products = (await axios.get("/api/public/products3?page=0&orderBy=id&userId=" + this.userData.id)).data;
       localStorage.setItem("userBalance", this.userData["balance"]);
     }
     else {
@@ -160,13 +160,13 @@ export default {
         <table>
           <caption></caption>
           <tr>
+            <th>Image</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
           </tr>
           <tr class="break-word" v-for="product of products" :key="product.id">
+            <td><img v-bind:src="'/api/public/images/' + product.imageId" class="rounded-card" alt="image"/></td>
             <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
             <td>{{ product.price }} €</td>
             <router-link to="/product/update">
               <button class="btn btn-link" aria-label="Update product"
@@ -237,5 +237,10 @@ td {
   text-align: center;
   padding: 5px;
   border-bottom: 1px solid rgb(206, 205, 205);
+}
+
+.rounded-card {
+  width: 60px;
+  height: 60px
 }
 </style>
