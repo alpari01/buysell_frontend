@@ -8,6 +8,7 @@
       <br>
       <div class="row g-3">
         <img class="marginauto" :src=meme alt="">
+        <h5>Dog pictures are updated every 10 minutes</h5>
       </div>
     </div>
   </div>

@@ -38,7 +38,10 @@ export default {
 </script>
 
 <template>
-  <div class="col-sm-6 mx-auto">
+  <div>
+    <h4>Page: {{ this.page + 1 }}</h4>
+  </div>
+  <div class="col-sm-6 mx-auto" style="padding: 5px">
     <input type="button" v-on:click="goPageBack" class="btn btn-primary btn-sm" style="margin-right: 5px" value="←">
     <input type="button" v-on:click="goPageForward" class="btn btn-primary btn-sm" style="margin-left: 5px" value="→">
   </div>

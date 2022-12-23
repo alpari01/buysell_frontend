@@ -7,8 +7,8 @@ function logout() {
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/products">Products</router-link>
+    <router-link to="/products">Products</router-link> |
+    <router-link to="/about">About</router-link>
 
     <div class="buttons">
       <router-link to="/profile"><input type="button" class="btn btn-outline-primary" value="My profile" style="margin-right: 5px"></router-link>
