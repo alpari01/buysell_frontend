@@ -6,6 +6,8 @@ export default {
     return {
       users: [],
       product: [],
+      userSeller: [],
+      productImage: null,
 
       trade: {
         buyerId: null,
@@ -20,7 +22,7 @@ export default {
   },
 
   methods: {
-    buyProduct() {
+    async buyProduct() {
 
       let userBalance = parseFloat(this.posts.balance)
       let productPrice = parseFloat(this.product.price)
@@ -31,11 +33,15 @@ export default {
         this.trade.sellerId = this.product.userId;
         this.trade.date = new Date();
 
-        axios.post('/api/trades/' + this.product.id, this.trade)
+        await axios.post('/api/trades/' + this.product.id, this.trade)
 
         this.posts.balance = userBalance - productPrice
-        axios.put('/api/users/' + localStorage.getItem("userId"), this.posts)
+        await axios.put('/api/users/' + localStorage.getItem("userId"), this.posts)
         localStorage.setItem("userBalance", this.posts.balance)
+
+        this.userSeller = (await axios.get('/api/users/' + this.trade.sellerId)).data
+        this.posts.balance = parseFloat(this.userSeller.balance) + productPrice
+        await axios.put('/api/users/' + this.trade.sellerId, this.posts)
       }
 
       else {
