@@ -57,7 +57,7 @@ export default {
             <div class="hover10">
               <div class="container">
                 <figure>
-                  <img src="https://img1.russianfood.com/dycontent/images_upl/577/big_576308.jpg" class="rounded-card" alt="image" v-on:click="viewProduct(product.id)">
+                  <img v-bind:src="'/api/public/images/' + product.imageId" class="rounded-card" alt="image" v-on:click="viewProduct(product.id)">
                   <div class="text-centered">VIEW PRODUCT</div>
                 </figure>
               </div>

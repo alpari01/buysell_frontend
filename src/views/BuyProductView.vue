@@ -63,7 +63,7 @@ export default {
         <h4 class="card-subtitle">{{ this.product.categoryName }}</h4>
         <div class="row">
           <div class="col-lg-5 col-md-5 col-sm-6">
-            <div class="white-box text-center"><img src="https://surmullet.ru/wp-content/uploads/2020/05/259.jpg" alt=""></div>
+            <div class="white-box text-center"><img v-bind:src="'/api/public/images/' + this.product.imageId" alt=""></div>
           </div>
           <div class="col-lg-7 col-md-7 col-sm-6">
             <h2 class="box-title mt-5">Product description</h2>
