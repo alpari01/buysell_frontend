@@ -12,7 +12,7 @@
           <br>
         </div>
         <div class="col-12">
-          <router-link to="/profile">
+          <router-link to="/">
             <input type="button" v-on:click="postData" class="btn btn-primary" value="Add">
           </router-link>
         </div>

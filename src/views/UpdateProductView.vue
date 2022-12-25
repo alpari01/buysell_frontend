@@ -51,6 +51,7 @@ export default {
         categoryId: null,
         categoryName: null,
         price: localStorage.getItem("productPrice"),
+        imageId: localStorage.getItem("imageId"),
       }
     }
   },
