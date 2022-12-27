@@ -4,7 +4,7 @@ const routes = [
   {
     path: '/dogs',
     name: 'dogs',
-    component: import('../views/DogsView.vue')
+    component: () => import('../views/DogsView.vue')
   },
   {
     path: '/login',
