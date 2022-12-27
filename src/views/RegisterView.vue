@@ -71,7 +71,7 @@
           <br>
         </div>
         <div class="col-12">
-          <router-link to="/success"><button type="submit" class="btn btn-primary" @submit="postData">Create account</button></router-link>
+          <router-link to="/success"><button type="submit" class="btn btn-primary" v-on:click=postData>Create account</button></router-link>
         </div>
       </form>
     </div>
