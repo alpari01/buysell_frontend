@@ -37,7 +37,7 @@
           <input type="button" @click="startUpload" name="Upload" value="Upload">
         </div>
         <div class="col-12">
-          <router-link to="/"><input type="button" v-on:click="postData" class="btn btn-primary" value="Add"></router-link>
+          <router-link to="/success"><input type="button" v-on:click="postData" class="btn btn-primary" value="Add"></router-link>
         </div>
       </form>
     </div>
@@ -47,6 +47,7 @@
 <script>
 import axios from "axios";
 import VueJwtDecode from 'vue-jwt-decode'
+import router from "@/router";
 
 export default {
   data(){
@@ -73,8 +74,14 @@ export default {
           let userData = VueJwtDecode.decode(token);
           this.posts.userId = userData["id"]
           this.posts = axios.post('/api/public/products', this.posts)
-        } else alert("Upload product image")
-      } else alert("User not logged in.")
+        } else {
+          alert("Upload product image")
+          router.back()
+        }
+      } else {
+        alert("User not logged in.")
+        router.back()
+      }
     },
 
     onImageUpload() {
