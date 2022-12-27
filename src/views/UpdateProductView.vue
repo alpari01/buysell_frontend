@@ -29,7 +29,7 @@
               <option value="Clothes"></option>
             </datalist>
           </div>
-          <input type="button" v-on:click="postData" class="btn btn-primary" value="Update">
+          <router-link to="/success"><input type="button" v-on:click="postData" class="btn btn-primary" value="Update"></router-link>
         </form>
       </div>
     </div>
@@ -39,6 +39,7 @@
 <script>
 import axios from "axios";
 import VueJwtDecode from 'vue-jwt-decode'
+import router from "@/router";
 
 export default {
   data(){
@@ -64,7 +65,10 @@ export default {
         this.posts.id = localStorage.getItem("productId")
         this.posts = axios.put('/api/public/products/' + this.posts.id, this.posts)
       }
-      else alert("User not logged in.")
+      else {
+        alert("User not logged in.")
+        router.back()
+      }
     }
   }
 };

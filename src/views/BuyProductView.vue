@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import router from "@/router";
 
 export default {
   data(){
@@ -42,10 +43,12 @@ export default {
         this.userSeller = (await axios.get('/api/users/' + this.trade.sellerId)).data
         this.posts.balance = parseFloat(this.userSeller.balance) + productPrice
         await axios.put('/api/users/' + this.trade.sellerId, this.posts)
+        this.link = "/success"
       }
 
       else {
         alert("Not enough money")
+        router.back()
       }
     }
   },
@@ -77,7 +80,7 @@ export default {
             <h2 class="mt-5">
               €{{ this.product.price }}<small class="text-success"> (36%off)</small>
             </h2>
-            <router-link to="/"><button class="btn btn-primary btn-rounded" v-on:click="buyProduct()">Buy Now</button></router-link>
+            <router-link to="/success"><button class="btn btn-primary btn-rounded" v-on:click="buyProduct()">Buy Now</button></router-link>
             <h4 class="box-title mt-5">Key Highlights</h4>
             <ul class="list-unstyled">
               <li><em class="fa fa-check text-success"></em> MasterCard, Visa, PayPal</li>

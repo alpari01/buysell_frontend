@@ -3,7 +3,7 @@
     <div class="col-sm-3 mx-auto">
       <h1>Register</h1>
       <br>
-      <form class="row g-3" @submit="postData">
+      <form class="row g-3">
         <div class="col-md-6">
           <label for="inputFirstName" class="form-label">First name</label>
           <input type="text" class="form-control" id="inputFirstName" v-model="posts.firstName" placeholder="e.g. John">
@@ -71,7 +71,7 @@
           <br>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Create account</button>
+          <router-link to="/success"><button type="submit" class="btn btn-primary" @submit="postData">Create account</button></router-link>
         </div>
       </form>
     </div>
