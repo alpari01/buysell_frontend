@@ -10,7 +10,7 @@ build frontend:
  tags:
   - main
  script:
-  - docker build -t vue .
+  - docker build -t test-vue .
 
 deploy frontend:
  stage: deploy
