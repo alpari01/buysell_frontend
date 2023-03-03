@@ -1,7 +1,7 @@
 ## What's this?
 **Frontend** project for a http://buysell.hopto.org where people can sell and buy products. \
 
-NB! This is only front-end part, there is a separate repository for back-end.
+NB! This is only front-end part, there is a separate repository for back-end which is found here https://github.com/alpari01/buysell_backend
 
 ## Technologies used
 - **Npm**, to download, install modules required for the project and also to start the project itself
